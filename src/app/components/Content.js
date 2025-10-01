@@ -1,3 +1,5 @@
+{/* eslint-disable-next-line react/no-unescaped-entities */}
+
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { reviews } from "../Data";
