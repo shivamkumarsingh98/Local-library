@@ -1,3 +1,28 @@
+import { 
+  BookOpen, RefreshCcw, Wifi, Newspaper, 
+  Globe, User, Headphones, Clock, 
+  CheckCircle2, SwitchCamera, Sparkles, 
+  Wind, Monitor, Users 
+} from "lucide-react";
+
+
+ export const features = [
+    { icon: BookOpen, title: "Nearby Library Seat Booking", desc: "Book seats instantly in libraries near your location." },
+    { icon: CheckCircle2, title: "Free Trial", desc: "Try before you decide – free trial for every student." },
+    { icon: SwitchCamera, title: "Switch Library Anytime", desc: "Change library anytime without extra charges." },
+    { icon: Globe, title: "No Dependency", desc: "One membership, access to multiple verified libraries." },
+    { icon: Users, title: "Pan-India Access", desc: "Study at any listed library across India after booking." },
+    { icon: Newspaper, title: "Daily Newspapers", desc: "Get daily newspapers in every library (Hindi + English)." },
+    { icon: Sparkles, title: "Monthly Current Affairs", desc: "Free curated current affairs for exam prep." },
+    { icon: Wind, title: "AC Study Environment", desc: "Noise-free, comfortable and air-conditioned halls." },
+    { icon: Wifi, title: "High-Speed WiFi", desc: "Reliable internet for online study & mock tests." },
+    { icon: Monitor, title: "Comfortable Seating", desc: "Ergonomic chairs & spacious desks for long hours." },
+    { icon: User, title: "Personal Manager", desc: "Dedicated manager for booking & library support." },
+    { icon: RefreshCcw, title: "Quick Problem Solve", desc: "Any library-related issue solved quickly." },
+    { icon: Headphones, title: "24×7 Support", desc: "Get help anytime through call or chat." },
+    { icon: Clock, title: "And More...", desc: "Lockers, clean washrooms, and extra facilities." },
+  ];
+
 export const reviews = [
   { name: "Amit", text: "Best library for students!", stars: 5 },
   { name: "Sara", text: "Great environment and staff.", stars: 4 },

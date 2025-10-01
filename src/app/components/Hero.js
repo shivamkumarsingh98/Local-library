@@ -93,7 +93,7 @@ export default function Hero() {
       </main>
 
       {/* Offer Modal */}
-      <Modal
+      {/* <Modal
         open={showOfferModal}
         onClose={() => setShowOfferModal(false)}
         title="Student Offers"
@@ -111,7 +111,7 @@ export default function Hero() {
             <li>And many more exciting benefits!</li>
           </ul>
         </div>
-      </Modal>
+      </Modal> */}
 
       {/* Footer */}
       <footer className="w-full py-6 px-8 border-t text-center text-gray-500 bg-white">
