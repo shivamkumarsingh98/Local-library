@@ -99,6 +99,7 @@ function Page() {
               Continue with Google
             </button>
           </form>
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
           <button
             type="button"
             className="w-full mt-4 text-blue-700 hover:underline text-sm font-medium"
