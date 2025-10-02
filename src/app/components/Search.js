@@ -4,6 +4,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 function Search() {
   return (
@@ -15,7 +16,7 @@ function Search() {
           initial={{ x: -200, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="absolute left-8 top-4 h-full w-2/3 z-0"
+          className="absolute left-8 top-4 h-full w-3/4 z-0"
         >
           <div className="relative w-full h-full">
             <Image
@@ -75,9 +76,15 @@ function Search() {
             placeholder="Search libraries..."
             className="flex-1 min-w-0 h-14 px-10 text-base rounded-none border-b border-gray-300 rounded-l-md"
           />
-          <Button className="h-14 px-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white hover:from-blue-700 hover:to-blue-900 rounded-none rounded-r-md -ml-px">
+          <Link href="/Search-libraris">
+          <Button className="h-14 px-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white hover:from-blue-700 hover:to-blue-900 rounded-none rounded-r-md -ml-px" 
+          // onClick={() => {
+          //   router.push("/Search-libraris");
+          // }}
+          >
             Search
           </Button>
+          </Link>
         </div>
       </header>
 

@@ -4,6 +4,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "./ui/button";
 import { reviews } from "../Data";
 import { features } from "../Data";
 
@@ -28,6 +29,8 @@ function StarRow({ count }) {
 
 export default function Content() {
   const scrollRef = useRef(null);
+  const hScrollRef = useRef(null);
+  const hIndexRef = useRef(0);
 
   // Auto-scroll bottom to top
   useEffect(() => {
@@ -45,6 +48,33 @@ export default function Content() {
     return () => clearInterval(interval);
   }, []);
 
+  // Auto-advance one card at a time for bottom reviews row (snap to exact card)
+  useEffect(() => {
+    const container = hScrollRef.current;
+    if (!container) return;
+
+    const advance = () => {
+      const cardWidth =
+        window.innerWidth >= 768
+          ? container.clientWidth / 2
+          : container.clientWidth;
+      const cards = container.querySelectorAll('[data-review-card="true"]');
+      const totalCards = cards.length;
+      if (totalCards === 0) return;
+
+      hIndexRef.current = (hIndexRef.current + 1) % totalCards;
+      const scrollAmount = cardWidth * hIndexRef.current;
+
+      container.scrollTo({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    };
+
+    const interval = setInterval(advance, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       {/* <div className="w-full flex flex-col md:flex-row gap-8 py-12 px-4 md:px-12">
@@ -59,27 +89,6 @@ export default function Content() {
           exit={{ opacity: 0, x: -40 }}
           transition={{ duration: 0.7, type: "spring" }}
         >
-          {/* Subcontent */}
-          {/* <p className="text-gray-500 text-lg leading-relaxed mb-4">
-            We are{" "}
-            <span className="font-semibold text-blue-500">
-              India's first platform
-            </span>{" "}
-            that allows students to Easily book{" "}
-            <span className="font-semibold text-blue-500">
-              verified libraries online
-            </span>
-            . With{" "}
-            <span className="font-semibold text-blue-500">
-              3000+ trusted libraries
-            </span>
-            listed across India, every partner library is
-            <span className="font-semibold text-blue-500">
-              verified and genuine
-            </span>
-            .
-          </p> */}
-
           <p className="text-gray-600 text-lg leading-relaxed mb-6 text-justify">
             We are India's first platform that allows students to easily book
             verified libraries online. With 3000+ trusted libraries listed
@@ -94,18 +103,6 @@ export default function Content() {
             different aura and learning experience full of choices.
           </p>
 
-          {/* <p className="text-gray-500 text-lg leading-relaxed mb-6">
-            Every day,{" "}
-            <span className="font-semibold text-blue-500">100+ students</span>
-            book their seats through our platform. Our libraries provide{" "}
-            <span className="font-semibold text-blue-500">
-              top-class study facilities
-            </span>{" "}
-            — including high-speed WiFi, quiet study zones, AC halls, and
-            digital resources — everything an aspirant needs for focused
-            preparation.
-          </p> */}
-
           {/* CTA Link */}
           <a
             href="#"
@@ -116,99 +113,58 @@ export default function Content() {
               ›
             </span>
           </a>
-
-          {/* Highlights / Bullet points */}
-          {/* <ul className="list-disc pl-5 text-gray-700 space-y-2">
-          <li>
-            <span className="font-semibold text-gray-900">
-              PAN India presence
-            </span>{" "}
-            – 3000+ libraries available
-          </li>
-          <li>
-            <span className="font-semibold text-gray-900">
-              Daily active users
-            </span>{" "}
-            – 100+ students booking every day
-          </li>
-          <li>
-            <span className="font-semibold text-gray-900">
-              Verified & Trusted
-            </span>{" "}
-            – 100% genuine libraries only
-          </li>
-          <li>
-            <span className="font-semibold text-gray-900">
-              Best Study Facilities
-            </span>{" "}
-            – WiFi, AC, digital access & more
-          </li>
-        </ul> */}
         </motion.div>
 
         {/* Right: review cards box */}
-        <motion.div
-          className="flex-1 flex justify-center items-center"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 40 }}
-          transition={{ duration: 0.7, type: "spring", delay: 0.2 }}
-        >
-          <div
-            ref={scrollRef}
-            className="w-full max-w-lg h-96 rounded-xl shadow-lg border border-blue-200 overflow-y-auto flex flex-col gap-4 p-4 bg-blue-500"
-            style={{ scrollbarWidth: "none" }}
-          >
-            <AnimatePresence>
-              {reviews.map((r, i) => (
-                <motion.div
-                  key={i}
-                  className="bg-white rounded-lg shadow flex flex-col px-5 py-4 min-h-[70px] max-w-full w-full"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-gray-700 text-base">
-                      {r.name}
-                    </span>
-                    <StarRow count={r.stars} />
-                  </div>
-                  <p className="text-gray-500 text-sm">{r.text}</p>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+        <div className="flex-1 flex justify-center items-center">
+          <div className="w-full  flex justify-center items-center">
+            <img
+              src="/images/libreres.avif"
+              alt="Library Logo"
+              className=" rounded-xl h-100 object-contain"
+            />
           </div>
-        </motion.div>
+        </div>
       </section>
-      <section className="w-full flex flex-col md:flex-row gap-8 py-12 px-4 md:px-12">
-        {/* Features Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">
-              Facilities We Provide to Students
-            </h2>
+      {/* Features Section */}
+      <section className="w-full bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 py-12 md:py-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-blue-800 mb-8 md:mb-12 px-2">
+            Facilities We Provide to Students
+          </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition"
-                >
-                  <feature.icon className="w-10 h-10 text-blue-600 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 mt-1">{feature.desc}</p>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            {features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                className="flex items-start gap-3 p-4 sm:p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition mx-2 sm:mx-0"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.08,
+                  type: "spring",
+                }}
+              >
+                <feature.icon className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 flex-shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600">
+                    {feature.desc}
+                  </p>
                 </div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
-        </section>
+        </div>
       </section>
+      {/* Trusted Aspirants Section */}
+
+      {/* Student Reviews Section */}
+     
     </div>
   );
 }

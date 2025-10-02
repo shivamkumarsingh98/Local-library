@@ -35,27 +35,12 @@ function Navebar() {
   }, []);
 
   // Modal content for demo
+  const handleStudentClick = () => {
+    router.push("/Students/auth/Student-Register");
+  };
+
   const renderModalContent = () => {
-    if (modalType === "student") {
-      return (
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Student Login</h3>
-          <form className="flex flex-col gap-3">
-            <input
-              type="email"
-              placeholder="Email"
-              className="border rounded px-3 py-2"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="border rounded px-3 py-2"
-            />
-            <Button className="bg-blue-600 text-white mt-2">Login</Button>
-          </form>
-        </div>
-      );
-    } else if (modalType === "owner") {
+    if (modalType === "owner") {
       return (
         <div>
           <h3 className="text-lg font-semibold mb-4">Library Owner Register</h3>
@@ -206,10 +191,7 @@ function Navebar() {
           </Button>
           <Button
             className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full ml-2"
-            onClick={() => {
-              setModalType("student");
-              setModalOpen(true);
-            }}
+            onClick={() => router.push("/Students/auth/Student-Register")}
           >
             Student
           </Button>
@@ -322,9 +304,8 @@ function Navebar() {
             <Button
               className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-full w-full text-left text-lg"
               onClick={() => {
-                setModalType("student");
-                setModalOpen(true);
                 setMenuOpen(false);
+                router.push("/Students/auth/Student-Register");
               }}
             >
               Student

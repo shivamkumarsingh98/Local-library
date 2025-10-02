@@ -15,6 +15,7 @@ import Search from "./Search";
 import Cards from "./Cards";
 import Content from "./Content";
 import Modal from "./Modal";
+import Footer from "./Footer";
 import { useState, useRef, useEffect } from "react";
 
 const cities = ["New York", "London", "Tokyo", "Paris", "Berlin"];
@@ -74,7 +75,7 @@ export default function Hero() {
         </div>
 
         {/* Feedback Section */}
-        <section id="feedback" className="mt-12">
+        {/* <section id="feedback" className="mt-12">
           <h2 className="text-2xl font-semibold mb-4">What users say</h2>
           <div className="flex space-x-6 overflow-x-auto pb-4">
             {feedbacks.map((fb) => (
@@ -89,7 +90,7 @@ export default function Hero() {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </main>
 
       {/* Offer Modal */}
@@ -113,10 +114,6 @@ export default function Hero() {
         </div>
       </Modal> */}
 
-      {/* Footer */}
-      <footer className="w-full py-6 px-8 border-t text-center text-gray-500 bg-white">
-        &copy; {new Date().getFullYear()} MyLanding. All rights reserved.
-      </footer>
     </div>
   );
 }
