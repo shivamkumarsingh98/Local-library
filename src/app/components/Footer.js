@@ -36,8 +36,8 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-3">Get in touch</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="mailto:support@locallibrary.app" className="hover:text-white">support@locallibrary.app</a></li>
-              <li><a href="tel:+10000000000" className="hover:text-white">+1 (000) 000-0000</a></li>
+              <li><a href="mailto:support@locallibrary.app" className="hover:text-white">contact@locallibraries.in</a></li>
+              <li><a href="tel:+10000000000" className="hover:text-white">+91 (9591) 907-942</a></li>
               <li className="flex items-center gap-4 pt-2">
                 <a href="#" aria-label="Twitter" className="hover:text-white">
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -69,6 +69,8 @@ export default function Footer() {
     </footer>
   );
 }
+
+
 
 
 

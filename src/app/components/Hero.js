@@ -17,6 +17,9 @@ import Content from "./Content";
 import Modal from "./Modal";
 import Footer from "./Footer";
 import { useState, useRef, useEffect } from "react";
+import Numbers from "./Numbers";
+import Story from "./Story";
+import Partners from "./Partners";
 
 const cities = ["New York", "London", "Tokyo", "Paris", "Berlin"];
 const libraries = [
@@ -70,8 +73,11 @@ export default function Hero() {
 
       {/* Main Section: Libraries */}
       <main id="main" className="flex-1 px-8 py-12">
-        <div className="flex space-x-6 overflow-x-auto pb-4">
+        <div className="flex flex-col pb-4">
           <Content />
+          <Partners />
+          <Numbers />
+          <Story />
         </div>
 
         {/* Feedback Section */}
@@ -113,7 +119,6 @@ export default function Hero() {
           </ul>
         </div>
       </Modal> */}
-
     </div>
   );
 }

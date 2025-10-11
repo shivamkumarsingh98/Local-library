@@ -7,6 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./ui/button";
 import { reviews } from "../Data";
 import { features } from "../Data";
+import TrustedAspirants from "./ui/trusted";
+import Reviews from "./ui/review";
+import Librariescards from "./Librariescards";
 
 function StarRow({ count }) {
   return (
@@ -77,13 +80,16 @@ export default function Content() {
 
   return (
     <div>
-      {/* <div className="w-full flex flex-col md:flex-row gap-8 py-12 px-4 md:px-12">
-        <h1>What we do</h1>
-      </div> */}
-      <section className="w-full flex flex-col md:flex-row gap-8 py-12 px-4 md:px-12">
+      {/* first section */}
+      <div className="w-full text-center py-6 md:py-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-blue-500 mb-2">
+          What We Do
+        </h1>
+      </div>
+      <section className="w-full flex flex-col md:flex-row gap-4 md:gap-8 py-4 md:py-8 px-4 md:px-12">
         {/* Left content */}
         <motion.div
-          className="flex-1 flex flex-col justify-center mb-8 md:mb-0"
+          className="flex-1 flex flex-col justify-center mb-4 md:mb-0"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -40 }}
@@ -106,7 +112,7 @@ export default function Content() {
           {/* CTA Link */}
           <a
             href="#"
-            className="group inline-flex items-center px-5 py-2 border rounded-md text-blue-600 font-medium text-sm shadow-sm hover:bg-blue-50 transition"
+            className="group inline-flex items-center px-5 py-2  text-blue-600 font-medium text-lg  hover:bg-blue-50 transition"
           >
             Learn more
             <span className="ml-2 transform transition-transform duration-300 group-hover:translate-x-1">
@@ -115,21 +121,51 @@ export default function Content() {
           </a>
         </motion.div>
 
-        {/* Right: review cards box */}
-        <div className="flex-1 flex justify-center items-center">
-          <div className="w-full  flex justify-center items-center">
-            <img
-              src="/images/libreres.avif"
-              alt="Library Logo"
-              className=" rounded-xl h-100 object-contain"
-            />
-          </div>
+        {/* Right: Image Carousel */}
+        <div className="flex-1">
+          <motion.div
+            className="w-full h-[400px] relative overflow-hidden rounded-xl"
+            ref={scrollRef}
+          >
+            <motion.div
+              className="absolute w-full h-full"
+              animate={{ y: ["0%", "-300%", "0%"] }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <img
+                src="/images/librariesimages/fivelib/image3libraries.jpg"
+                alt="Library 1"
+                className="w-full h-[400px] object-cover"
+              />
+              <img
+                src="/images/librariesimages/secondlib/image2libraries.jpg"
+                alt="Library 2"
+                className="w-full h-[400px] object-cover"
+              />
+              <img
+                src="/images/librariesimages/fivelib/image4libraries.jpg"
+                alt="Library 3"
+                className="w-full h-[400px] object-cover"
+              />
+              <img
+                src="/images/librariesimages/thirdlib/image4libraries.jpg"
+                alt="Library 4"
+                className="w-full h-[400px] object-cover"
+              />
+            </motion.div>
+          </motion.div>
         </div>
       </section>
+      <Librariescards />
+
       {/* Features Section */}
       <section className="w-full bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 py-12 md:py-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-blue-800 mb-8 md:mb-12 px-2">
+          <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-center text-blue-600 mb-8 md:mb-12 px-2">
             Facilities We Provide to Students
           </h2>
 
@@ -162,9 +198,10 @@ export default function Content() {
         </div>
       </section>
       {/* Trusted Aspirants Section */}
+      {/* <TrustedAspirants /> */}
 
       {/* Student Reviews Section */}
-     
+      {/* <Reviews /> */}
     </div>
   );
 }
