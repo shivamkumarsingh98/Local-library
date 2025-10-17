@@ -30,7 +30,7 @@ function Librariescards() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
-            className="flex items-center gap-2 text-white bg-blue-600 px-6 py-2 rounded-lg font-bold text-lg hover:bg-blue-700"
+            className="flex animate-bounce  items-center gap-2 text-white bg-blue-600 px-6 py-2 rounded-lg font-bold text-lg hover:bg-blue-700"
           >
             See More
             <motion.span

@@ -114,7 +114,7 @@ function Story() {
   }, []);
 
   return (
-    <section className="w-full bg-orange-500 text-white py-16 md:py-24">
+    <section className="w-full  bg-blue-500 text-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered heading */}
         <motion.div
@@ -184,7 +184,7 @@ function Story() {
                   onClick={() => setCurrentIndex(idx)}
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     idx === currentIndex
-                      ? "bg-blue-500 w-8"
+                      ? "bg-white w-8"
                       : "bg-gray-600 hover:bg-gray-500"
                   }`}
                 />
@@ -199,9 +199,9 @@ function Story() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="relative aspect-[3/4] w-full max-w-md mx-auto">
+            <div className="relative  aspect-[3/4] w-full max-w-md mx-auto">
               <Image
-                src="/images/heroimage.jpg" // Update with your image path
+                src="/images/storyimage.jpg" // Update with your image path
                 alt={testimonials[currentIndex].name}
                 fill
                 className="object-cover rounded-2xl"

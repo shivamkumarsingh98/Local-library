@@ -83,7 +83,7 @@ export default function Content() {
       {/* first section */}
       <div className="w-full text-center py-6 md:py-8">
         <h1 className="text-3xl md:text-4xl font-bold text-blue-500 mb-2">
-          What We Do
+          India's Largest Library Booking Platform
         </h1>
       </div>
       <section className="w-full flex flex-col md:flex-row gap-4 md:gap-8 py-4 md:py-8 px-4 md:px-12">
@@ -123,41 +123,13 @@ export default function Content() {
 
         {/* Right: Image Carousel */}
         <div className="flex-1">
-          <motion.div
-            className="w-full h-[400px] relative overflow-hidden rounded-xl"
-            ref={scrollRef}
-          >
-            <motion.div
-              className="absolute w-full h-full"
-              animate={{ y: ["0%", "-300%", "0%"] }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              <img
-                src="/images/librariesimages/fivelib/image3libraries.jpg"
-                alt="Library 1"
-                className="w-full h-[400px] object-cover"
-              />
-              <img
-                src="/images/librariesimages/secondlib/image2libraries.jpg"
-                alt="Library 2"
-                className="w-full h-[400px] object-cover"
-              />
-              <img
-                src="/images/librariesimages/fivelib/image4libraries.jpg"
-                alt="Library 3"
-                className="w-full h-[400px] object-cover"
-              />
-              <img
-                src="/images/librariesimages/thirdlib/image4libraries.jpg"
-                alt="Library 4"
-                className="w-full h-[400px] object-cover"
-              />
-            </motion.div>
-          </motion.div>
+          <div className="w-full h-[400px] relative overflow-hidden rounded-xl">
+            <img
+              src="https://image3.jdomni.in/banner/07112023/9D/38/78/2D65EC9DFC5E77F36450BD5C18_1699357012663.jpg?output-format=webp"
+              alt="Library 1"
+              className="w-full h-[400px] object-cover"
+            />
+          </div>
         </div>
       </section>
       <Librariescards />

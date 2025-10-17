@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import {
@@ -16,10 +18,10 @@ import Cards from "./Cards";
 import Content from "./Content";
 import Modal from "./Modal";
 import Footer from "./Footer";
-import { useState, useRef, useEffect } from "react";
 import Numbers from "./Numbers";
 import Story from "./Story";
 import Partners from "./Partners";
+import ComanQuestions from "./ComanQuestions";
 
 const cities = ["New York", "London", "Tokyo", "Paris", "Berlin"];
 const libraries = [
@@ -41,6 +43,7 @@ const feedbacks = [
 export default function Hero() {
   const [showOfferModal, setShowOfferModal] = useState(false);
   const [offerModalShown, setOfferModalShown] = useState(false);
+
   useEffect(() => {
     if (offerModalShown) return;
     let timeoutId = null;
@@ -49,7 +52,7 @@ export default function Hero() {
         timeoutId = setTimeout(() => {
           setShowOfferModal(true);
           setOfferModalShown(true);
-        }, 1200); // 1.2s after scroll
+        }, 1200);
         window.removeEventListener("scroll", handleScroll);
       }
     };
@@ -60,65 +63,117 @@ export default function Hero() {
     };
   }, [offerModalShown]);
 
+  // 🧠 SEO Structured Data for Home Page
+  useEffect(() => {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Local Libraries - India's First Library Booking Site",
+      description:
+        "Book study rooms and verified libraries instantly across India with Local Libraries. Affordable, quiet, and student-friendly spaces for all exam aspirants.",
+      url: "https://locallibraries.in",
+      publisher: {
+        "@type": "Organization",
+        name: "Local Libraries",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://locallibraries.in/images/Final Logo.jpg",
+        },
+      },
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://locallibraries.in",
+          },
+        ],
+      },
+      mainEntity: {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "What is Local Libraries?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Local Libraries is India's first online platform for booking study rooms and libraries across India, helping students find quiet and affordable study spaces.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Is Local Libraries available in my city?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes! We are expanding rapidly. You can check availability by searching your city on our homepage.",
+            },
+          },
+        ],
+      },
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black">
-      {/* Navbar */}
-      <Navebar />
+    <>
+      <title>Local Libraries | India’s First Library Booking Site</title>
+      <meta
+        name="description"
+        content="Book verified study rooms and libraries instantly with Local Libraries — India's first library booking site. Find nearby reading spaces for UPSC, SSC, NEET, and more."
+      />
+      <meta
+        name="keywords"
+        content="Local Libraries, study space India, book library seat, library booking site, reading room near me, India’s first library booking platform"
+      />
+      <meta name="author" content="Local Libraries" />
+      <meta
+        property="og:title"
+        content="Local Libraries | India’s First Library Booking Site"
+      />
+      <meta
+        property="og:description"
+        content="Discover and book verified study spaces with Local Libraries. Ideal for exam aspirants and professionals seeking focused environments."
+      />
+      <meta property="og:image" content="/images/Final Logo.jpg" />
+      <meta property="og:url" content="https://locallibraries.in" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:title"
+        content="Local Libraries | India’s First Library Booking Site"
+      />
+      <meta
+        name="twitter:description"
+        content="Book study rooms and verified libraries near you with Local Libraries — India’s first library booking platform."
+      />
+      <meta name="twitter:image" content="/images/Final Logo.jpg" />
 
-      {/* Hero Section */}
-      <header>
-        {/* Titles and search */}
-        <Search />
-      </header>
+      <div className="min-h-screen flex flex-col bg-white text-black">
+        {/* Hero Section */}
+        <header>
+          <Search />
+        </header>
 
-      {/* Main Section: Libraries */}
-      <main id="main" className="flex-1 px-8 py-12">
-        <div className="flex flex-col pb-4">
-          <Content />
-          <Partners />
-          <Numbers />
-          <Story />
-        </div>
-
-        {/* Feedback Section */}
-        {/* <section id="feedback" className="mt-12">
-          <h2 className="text-2xl font-semibold mb-4">What users say</h2>
-          <div className="flex space-x-6 overflow-x-auto pb-4">
-            {feedbacks.map((fb) => (
-              <div
-                key={fb.user}
-                className="min-w-[200px] bg-blue-50 rounded-lg p-4 border border-blue-200"
-              >
-                <p className="text-md mb-2">"{fb.text}"</p>
-                <span className="text-sm font-semibold text-blue-700">
-                  - {fb.user}
-                </span>
-              </div>
-            ))}
+        {/* Main Section */}
+        <main id="main" className="flex-1">
+          <div className="flex flex-col pb-4">
+            <Content />
+            <Partners />
+            <Numbers />
+            <Story />
+            {/* <ComanQuestions /> */}
           </div>
-        </section> */}
-      </main>
-
-      {/* Offer Modal */}
-      {/* <Modal
-        open={showOfferModal}
-        onClose={() => setShowOfferModal(false)}
-        title="Student Offers"
-        size="md"
-      >
-        <div className="space-y-3">
-          <div className="text-xl font-bold text-blue-700 mb-2">
-            50% OFF First Registration (Referral Offer)
-          </div>
-          <ul className="list-disc pl-5 space-y-1 text-gray-800">
-            <li>Switch Library Option: Free Trials</li>
-            <li>Class Access, Free WiFi, Newspapers</li>
-            <li>Current &amp; Special Offers</li>
-            <li>Full Fees Refund after clearing any government exam</li>
-            <li>And many more exciting benefits!</li>
-          </ul>
-        </div>
-      </Modal> */}
-    </div>
+        </main>
+      </div>
+    </>
   );
 }

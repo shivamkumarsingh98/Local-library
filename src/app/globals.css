@@ -23,6 +23,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 @keyframes slide-left {
@@ -109,7 +111,11 @@ body {
 }
 
 @keyframes party-bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
   40% {
@@ -130,11 +136,21 @@ body {
 
 /* Additional party effects */
 @keyframes rainbow-glow {
-  0% { filter: hue-rotate(0deg) brightness(1); }
-  25% { filter: hue-rotate(90deg) brightness(1.2); }
-  50% { filter: hue-rotate(180deg) brightness(1); }
-  75% { filter: hue-rotate(270deg) brightness(1.2); }
-  100% { filter: hue-rotate(360deg) brightness(1); }
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  25% {
+    filter: hue-rotate(90deg) brightness(1.2);
+  }
+  50% {
+    filter: hue-rotate(180deg) brightness(1);
+  }
+  75% {
+    filter: hue-rotate(270deg) brightness(1.2);
+  }
+  100% {
+    filter: hue-rotate(360deg) brightness(1);
+  }
 }
 
 .animate-rainbow-glow {
@@ -145,8 +161,28 @@ body {
   animation: party-bounce 2s infinite;
 }
 
+/* Container animation */
+#scroll-track {
+  display: inline-flex;
+  align-items: center;
+  animation: scroll-left 50s linear infinite;
+}
+
+/* Keyframes for seamless scroll */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
+}
+
 /* Mobile menu slide-in animation */
-@keyframes slide-in {
+/* @keyframes slide-in {
   from {
     transform: translateX(100%);
     opacity: 0;
@@ -159,4 +195,4 @@ body {
 
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
-}
+} */
